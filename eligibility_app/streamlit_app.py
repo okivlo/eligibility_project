@@ -37,7 +37,7 @@ def eligibility_app():
 
     # Routes to menu_eligibility_list_creation
     elif menu_selection == "Create Eligibility List":
-        calculate_eligibility(st)
+        calculate_eligibility()
 
 
 if __name__ == "__main__":

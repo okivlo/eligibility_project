@@ -1,5 +1,5 @@
 from datetime import datetime, timedelta
-
+import streamlit as st
 import pandas as pd
 from dateutil.relativedelta import relativedelta
 
@@ -37,7 +37,8 @@ def calculate_eligible_grant(row):
         return None
 
 
-def calculate_eligibility(st):
+def calculate_eligibility():
+    """Main function to create the eligibility list based on the researchers list."""
     st.subheader("Calculate Eligibility")
     researchers_list = st.file_uploader("Upload researchers list", type=["xlsx", "xls"])
 
