@@ -144,9 +144,7 @@ def save_and_format_df_as_excel(updated_researchers_dataframe: pd.DataFrame) -> 
                 "border": 1,
             }
         )
-        workbook.add_format(
-            {"text_wrap": True, "valign": "top", "border": 1}
-        )
+        workbook.add_format({"text_wrap": True, "valign": "top", "border": 1})
         alternating_color = workbook.add_format({"fg_color": "#F2F2F2"})
 
         # Apply formatting to headers (starting from the second row.)
