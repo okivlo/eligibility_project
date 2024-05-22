@@ -5,7 +5,7 @@ from typing import List
 
 import pandas as pd
 import streamlit as st
-from seeds.function_names import function_names
+from seeds.function_names import function_names_researchers
 from seeds.translation_dutch_english import translation_dict
 from utils.filter_hr_list import filter_out_function_names
 
@@ -204,7 +204,7 @@ def update_researchers_list() -> None:
 
             # Filter the HR list.
             filtered_df = filter_df_add_column(
-                hr_df, function_name_parts=function_names
+                hr_df, function_name_parts=function_names_researchers
             )
 
             # Merge both dataframes.
