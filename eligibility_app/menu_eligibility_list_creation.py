@@ -30,9 +30,9 @@ def calculate_nwo_talent_eligibility(researcher: pd.Series) -> str | None:
         The grant the researcher can apply for and until when.
     """
     # Define the reference dates for the grants eligibility check
-    reference_date_veni = datetime(datetime.now().year, 1, 1)
-    reference_date_vidi = datetime(datetime.now().year, 10, 1)
-    reference_date_vici = datetime(datetime.now().year, 10, 1)
+    reference_date_veni = datetime(year=datetime.now().year, month=1, day=1)
+    reference_date_vidi = datetime(year=datetime.now().year, month=10, day=1)
+    reference_date_vici = datetime(year=datetime.now().year, month=3, day=1)
 
     # Read the PhD defense date from the row
     phd_date = strip_datetime_str(researcher=researcher)
@@ -44,21 +44,21 @@ def calculate_nwo_talent_eligibility(researcher: pd.Series) -> str | None:
 
     # Check Veni eligibility first
     if (
-        0 <= years_diff_veni < 4
+        -1 <= years_diff_veni < 3
     ):  # Veni eligibility within three years after the defense.
         last_eligible_year_veni = phd_date.year + 3
         return "Veni " + str(last_eligible_year_veni)
 
     # If not eligible for Veni, check Vidi eligibility
     elif (
-        0 <= years_diff_vidi < 9
+        3 <= years_diff_vidi < 8
     ):  # Vidi eligibility within eight years after the defense.
         last_eligible_year_vidi = phd_date.year + 8
         return "Vidi " + str(last_eligible_year_vidi)
 
     # If not eligible for Vidi, check Vici eligibility
     elif (
-        0 <= years_diff_vici < 16
+        8 <= years_diff_vici < 15
     ):  # Vici eligibility within fifteen years after the defense.
         last_eligible_year_vici = phd_date.year + 15
         return "Vici " + str(last_eligible_year_vici)
@@ -78,9 +78,9 @@ def calculate_nwo_oc_eligibility(researcher: pd.Series) -> str | None:
         The grant the researcher can apply for and until when.
     """
     # Define the reference dates for the grants eligibility check
-    reference_date_xs = datetime(datetime.now().year, 3, 19)
-    reference_date_m = datetime(datetime.now().year, 11, 1)
-    reference_date_l = datetime(datetime.now().year, 9, 1)
+    reference_date_xs = datetime(year=datetime.now().year, month=3, day=19)
+    reference_date_m = datetime(year=datetime.now().year, month=11, day=1)
+    reference_date_l = datetime(year=datetime.now().year, month=9, day=1)
 
     # Read the PhD defense date from the row
     phd_date = strip_datetime_str(researcher=researcher)
@@ -91,12 +91,12 @@ def calculate_nwo_oc_eligibility(researcher: pd.Series) -> str | None:
     years_diff_l = (reference_date_l - phd_date).days / 365.25
 
     # Check xs eligibility first
-    if 5 <= years_diff_xs < 11:  # xs eligibility within three years after the defense.
+    if 5 <= years_diff_xs < 10:  # xs eligibility within three years after the defense.
         last_eligible_year_xs = phd_date.year + 10
         return "Xs " + str(last_eligible_year_xs)
 
-    # If not eligible for xs, check L eligibility
-    elif 15 < years_diff_l:
+    # If not eligible for xs, check M/L eligibility
+    elif 16 < years_diff_l:
         return "M/L"
 
     # If not eligible for L, check M eligibility
@@ -118,9 +118,9 @@ def calculate_erc_eligibility(researcher: pd.Series) -> str | None:
         The grant the researcher can apply for and until when.
     """
     # Define the reference dates for the grants eligibility check
-    reference_date_starting = datetime(datetime.now().year, 1, 1)
-    reference_date_consolidator = datetime(datetime.now().year, 1, 1)
-    reference_date_advanced = datetime(datetime.now().year, 1, 1)
+    reference_date_starting = datetime(year=datetime.now().year, month=1, day=1)
+    reference_date_consolidator = datetime(year=datetime.now().year, month=1, day=1)
+    reference_date_advanced = datetime(year=datetime.now().year, month=1, day=1)
 
     # Read the PhD defense date from the row
     phd_date = strip_datetime_str(researcher=researcher)
@@ -132,18 +132,18 @@ def calculate_erc_eligibility(researcher: pd.Series) -> str | None:
 
     # Check StG eligibility first
     if (
-        2 <= years_diff_starting < 8
+        2 <= years_diff_starting < 7
     ):  # xs eligibility within three years after the defense.
         last_eligible_year_starting = phd_date.year + 7
         return "StG " + str(last_eligible_year_starting)
 
     # If not eligible for StG, check CoG eligibility
-    elif 8 <= years_diff_consolidator < 13:
+    elif 7 <= years_diff_consolidator < 12:
         last_eligible_year_consolidator = phd_date.year + 12
         return "CoG " + str(last_eligible_year_consolidator)
 
     # If not eligible for L, check M eligibility
-    elif 13 < years_diff_advanced:
+    elif 12 <= years_diff_advanced:
         return "AdG"
 
     # If not eligible for any return none
