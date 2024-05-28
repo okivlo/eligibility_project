@@ -5,7 +5,7 @@ from io import BytesIO
 import pandas as pd
 
 
-def save_and_format_df_as_excel(updated_researchers_dataframe: pd.DataFrame) -> BytesIO:
+def save_and_format_df_as_excel(updated_researchers_dataframe: pd.DataFrame) -> bytes:
     """Function to save the updated hr dataframe as an Excel file with the correct formatting.
 
     Args:
