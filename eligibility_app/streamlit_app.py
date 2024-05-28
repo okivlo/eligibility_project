@@ -3,7 +3,8 @@
 import streamlit as st
 from menu_eligibility_list_creation import calculate_eligibility
 from menu_hr_researcher_update import update_researchers_list
-from menu_hr_education_update import update_education_list
+
+# from menu_hr_education_update import update_education_list
 
 
 def eligibility_app():
@@ -18,7 +19,6 @@ def eligibility_app():
         [
             "Home page",
             "Update researchers list with HR list",
-            "Update education list with HR list",
             "Create Eligibility List",
         ],
     )
@@ -40,9 +40,6 @@ def eligibility_app():
     # Routes to menu_eligibility_list_creation
     elif menu_selection == "Create Eligibility List":
         calculate_eligibility()
-
-    elif menu_selection == "Update education list with HR list":
-        update_education_list()
 
 
 if __name__ == "__main__":

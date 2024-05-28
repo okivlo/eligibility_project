@@ -10,6 +10,32 @@ from seeds.translation_dutch_english import translation_dict
 from utils.filter_hr_list import filter_out_function_names
 
 
+def calculate_phd_date_corrected_for_children(row):
+
+    if pd.isna(row["PhD Defense Date"]):
+        return None  # Return None if there is no PhD Defense Date
+
+    children_count = (
+        row["Count of children applicable"]
+        if pd.notna(row["Count of children applicable"])
+        else 0
+    )
+
+    # Calculate the adjustment period
+    if row["Gender"] == "Female":
+        months_to_subtract = 18 * children_count
+    elif row["Gender"] == "Male":
+        months_to_subtract = 6 * children_count
+    else:
+        return row["PhD Defense Date"]  # No adjustment if gender is not specified
+
+    # Adjust the PhD Defense Date
+    adjusted_date = pd.to_datetime(row["PhD Defense Date"]) + pd.DateOffset(
+        months=months_to_subtract
+    )
+    return adjusted_date
+
+
 def filter_df_add_column(
     hr_df: pd.DataFrame, function_name_parts: List
 ) -> pd.DataFrame:
@@ -210,6 +236,11 @@ def update_researchers_list() -> None:
             # Merge both dataframes.
             merged_df = merge_two_df(
                 researchers_df=researchers_df, filtered_hr_df=filtered_df
+            )
+
+            # Calculate adjusted phd defense date based on children.
+            merged_df["Children corrected PhD date"] = merged_df.apply(
+                calculate_phd_date_corrected_for_children, axis=1
             )
 
             # Format merged tables as excel data.
