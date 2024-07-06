@@ -1,7 +1,6 @@
 from datetime import datetime
-
-import numpy as np
 import streamlit as st
+
 import pandas as pd
 from utils.save_df_as_excel import save_and_format_df_as_excel
 
@@ -19,10 +18,11 @@ def strip_datetime_str(researcher: pd.Series, phd_column_to_choose) -> datetime 
     try:
         phd_date = datetime.strptime(str(phd_date), "%Y-%m-%d")
         return phd_date
-    except ValueError:
+    except ValueError as e:
         st.error(
             f"There seems to be a problem with converting the PhD defense date of researcher "
-            f"{researcher['First Name']} {researcher['Last Name']}"
+            f"{researcher['First Name']} {researcher['Last name']}"
+            f"original error: {e}"
         )
         return None  # Return None if there's an error in date conversion
 

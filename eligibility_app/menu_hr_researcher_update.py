@@ -33,7 +33,8 @@ def calculate_phd_date_corrected_for_children(row):
     adjusted_date = pd.to_datetime(row["PhD Defense Date"]) + pd.DateOffset(
         months=months_to_subtract
     )
-    return adjusted_date
+    formatted_date = adjusted_date.strftime('%Y-%m-%d')
+    return formatted_date
 
 
 def filter_df_add_column(

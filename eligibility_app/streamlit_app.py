@@ -29,7 +29,7 @@ def eligibility_app():
         st.write("---")
         st.info(
             "I made this in my free time to lighten the load of you grants officers. If anything is unclear, if "
-            "you have feedback, or if you have a request for the implementation, feel free to shoot me a message at"
+            "you have feedback, or if you have a request for the implementation, feel free to shoot me a message at "
             "i.vloothuis@gmail.com."
         )
 
