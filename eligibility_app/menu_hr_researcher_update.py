@@ -111,7 +111,8 @@ def merge_two_df(
 
     # Drop the extra "PhD Defense Date_y" column (We prioritize the grants office's PhD date.)
     merged_df.drop(columns=["PhD Defense Date_y"], inplace=True)
-
+    # Convert date column to datetime first.
+    merged_df["PhD Defense Date"] = pd.to_datetime(merged_df["PhD Defense Date"])
     # Convert date column to right format
     merged_df["PhD Defense Date"] = merged_df["PhD Defense Date"].dt.strftime(
         "%Y-%m-%d"

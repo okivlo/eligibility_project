@@ -5,9 +5,4 @@ Info on how to use this program will follow.
 
 
 ---
-Current workflow to update the .exe:
-In powershell, navigate to the eligibility_project folder. Execute command `npm run dump -r requirements.txt` 
-
-After doing so check whether it works by running `npm run servewindows`
-
-If that works,
+We deploy on streamlit. Pushing to the main branch will automatically update that site: https://eligibilityproject-9aylvt4bd5rk4zurdzeb26.streamlit.app/

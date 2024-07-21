@@ -28,8 +28,14 @@ def eligibility_app():
         st.title("Welcome to the Eligibility Helper.")
         st.write("---")
         st.info(
-            "I made this in my free time to lighten the load of you grants officers. If anything is unclear, if "
-            "you have feedback, or if you have a request for the implementation, feel free to shoot me a message at "
+            "I made this application to simplify the process of creating an eligibility list. "
+            "On the left side there is a drop-down menu showing two options:\n"
+            "- Update researchers list with HR list:\n"
+            "Given the previous researchers list and the HR list. This option will merge the two excel sheets into one,"
+            "keeping the comments from the previous researchers list.\n\n"
+            "- Create Eligibility list\n"
+            " Given the new eligibility list created, add on what grants researchers are eligible for and until when.\n\n"
+            "If anything is unclear, if you have feedback, or if you have a request for the implementation, feel free to shoot me a message at "
             "i.vloothuis@gmail.com."
         )
 
